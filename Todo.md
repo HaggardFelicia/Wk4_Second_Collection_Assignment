@@ -1,11 +1,14 @@
 
-# ***Todo***
+# Todo
 
-## ***3.4 Todo***
+## Week 4 Second Collection Assignment
 
-- [ ] Working with your API and models from last week, incorporate the operators we learned this week.
-  - Working with the API and models you made last week pick a pair of Mongo Query Operators that would fit your case the best.
-  - You can make use of select to exclude parts of a model and only return the name of a character for example.
-- [ ] Use a query string to use at least two query operators on one of your endpoints.
-- [ ] Use select to exclude data from an endpoint with a query string
-- [ ] Use sort on at least one endpoint to return a sorted get all endpoint
+- [ ] You will finish your second collection (Model).
+You will need to:
+
+  - [ ] Use select() to exclude info like version
+  - [ ] Use populate to display your first collection (model) in your second model
+  - [ ] In all the (id) functions check to see if the object is in the database first, if so, then display "object" not found, like in the examples. (GET by ID, etc.)
+  - [ ] Put your hardcoded messages in a Messages module
+  - [ ] When posting your second collection use the id from the first collection, (found in MongoDB)
+  - [ ] Use Postman to view ALL your function payloads
