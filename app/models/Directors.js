@@ -33,7 +33,13 @@ const directorsSchema = new mongoose.Schema(
             required: [true, 'You are required to have a description'],
             maxlength: [500, 'Description cannot be more than 500 characters'],
             trim: true,
-        }
+        },
+        movies: [
+            {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Movie' 
+            },
+        ]
     },
     {
         timestamps: true,

@@ -1,4 +1,5 @@
 const Directors = require('../models/Directors');
+const Movies = require('../models/Movies');
 
 // Use a query string to use at least two query operators on one of your endpoints.
 // Use select to exclude data from an endpoint with a query string

@@ -7,7 +7,7 @@ const moviesSchema = new mongoose.Schema(
             required: [true, 'You are required to have a title'],
             unique: true,
             trim: true,
-            maxlength: [170, 'Title cannot be more than 50 characters'],
+            maxlength: [170, 'Title cannot be more than 170 characters'],
         },
         genre:{
             type: String,
@@ -27,9 +27,8 @@ const moviesSchema = new mongoose.Schema(
             ],
         },
         director:{
-            type: String,
-            ref: 'Director',
-            required: [true, 'You are required to have a director'],
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Director'
         },
         year: {
             type: Number,
