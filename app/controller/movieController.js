@@ -58,7 +58,7 @@ const createMovie = async (req, res) => {
         //ceates a new movie model
         const newMovie = new Movie(movie);
         //push the movie id to the directer.books array
-        director.movie.push(newMovie._id);
+        director.movies.push(newMovie._id);
         //saves the movie and director data
         const queries = [newMovie.save(), director.save()];
         await Promise.all(queries);

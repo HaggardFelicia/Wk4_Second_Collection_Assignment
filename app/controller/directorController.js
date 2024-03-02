@@ -138,6 +138,7 @@ const deleteDirector = async (req, res) => {
         const director = await Directors.findByIdAndDelete(id, req.body, { new: false });
         res.status(200).json({ 
             id,
+            data: director,
             message: `${req.method} - request to Director endpoint`, 
             success: true
         });
