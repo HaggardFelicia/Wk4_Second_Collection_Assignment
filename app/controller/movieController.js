@@ -1,4 +1,4 @@
-const Movies = require('../models/Movies');
+const Movie = require('../models/Movies');
 const Director = require('../models/Directors');
 
 const getAllMovies = async (req, res) => {
@@ -56,9 +56,9 @@ const createMovie = async (req, res) => {
         //attaching the director object to the movie
         movie.director = director;
         //ceates a new movie model
-        const newMovie = new Movies(movie);
+        const newMovie = new Movie(movie);
         //push the movie id to the directer.books array
-        director.movies.push(newMovie._id);
+        director.movie.push(newMovie._id);
         //saves the movie and director data
         const queries = [newMovie.save(), director.save()];
         await Promise.all(queries);
