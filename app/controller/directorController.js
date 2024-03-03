@@ -1,12 +1,9 @@
 const Directors = require('../models/Directors');
-const Movies = require('../models/Movies');
+const Movie = require('../models/Movies');
+const message = require('../messages/messages');
 
-// Use a query string to use at least two query operators on one of your endpoints.
-// Use select to exclude data from an endpoint with a query string
-// Use sort on at least one endpoint to return a sorted get all endpoint
 
 const getAllDirectors = async (req, res) => {
-    //try code block to get all directors with a success message
     //try code block to get all directors with a success message
     try{
         //query string
@@ -41,7 +38,7 @@ const getAllDirectors = async (req, res) => {
        //response status and message
        res.status(200).json({ 
            data: directors,
-           message: `${req.method} - request to Director endpoint`, 
+           message: message.director_endpoint,
            success: true
        });
     }
@@ -63,13 +60,14 @@ const getDirectorById = async (req, res) => {
     try{
         const {id} = req.params;
         Directors.findById(id)
-        .populate('Movie', 'title director')
+        .select('name _id')
+        .populate('movie', 'title year')
         .exec()
         .then(director => {
             if(!director){
                 console.log(director);
                 return res.status(404).json({
-                    message: 'Director not found',
+                    message: message.director_not_found,
                     success: false
                 });
             }   
@@ -77,7 +75,7 @@ const getDirectorById = async (req, res) => {
         const director = await Directors.findById(id);
         res.status(200).json({ 
             data: director,
-            message: `${req.method} - request to Director endpoint`, 
+            message: message.director_endpoint,
             success: true
         });
     }
@@ -102,7 +100,7 @@ const createDirector = async (req, res) => {
         console.log('data >>>', newDirector);
         res.status(200).json({ 
             data: newDirector,
-            message: `${req.method} - request to Director endpoint`, 
+            message: message.director_endpoint,
             success: true
         });
     }
@@ -130,7 +128,7 @@ const updateDirector = async (req, res) => {
             if(!director){
                 console.log(director);
                 return res.status(404).json({
-                    message: 'Director not found',
+                    message: message.director_not_found,
                     success: false
                 });
             }
@@ -138,7 +136,7 @@ const updateDirector = async (req, res) => {
         const director = await Directors.findByIdAndUpdate(id);
         res.status(200).json({ 
             data: director,
-            message: `${req.method} - request to Director endpoint`, 
+            message: message.director_endpoint,
             success: true
         });
     }
@@ -166,7 +164,7 @@ const deleteDirector = async (req, res) => {
              if(!director){
                  console.log(director);
                  return res.status(404).json({
-                     message: 'Director not found',
+                     message: message.director_not_found,
                      success: false
                  });
              }
@@ -175,7 +173,7 @@ const deleteDirector = async (req, res) => {
         res.status(200).json({ 
             id,
             data: director,
-            message: `${req.method} - request to Director endpoint`, 
+            message: message.director_endpoint,
             success: true
         });
     }

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Movie = require('../models/Movies');
 
 const directorsSchema = new mongoose.Schema(
     {
@@ -17,7 +18,7 @@ const directorsSchema = new mongoose.Schema(
             type: String,
             enum: [
                 "Male",
-                "Felmale"
+                "Female"
             ]
         },
         email: {
@@ -34,10 +35,10 @@ const directorsSchema = new mongoose.Schema(
             maxlength: [500, 'Description cannot be more than 500 characters'],
             trim: true,
         },
-        movies: [
+        movie: [
             {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Movie' 
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Movie' 
             },
         ]
     },
