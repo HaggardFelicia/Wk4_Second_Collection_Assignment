@@ -54,7 +54,7 @@ const createMovie = async (req, res) => {
     try{
         const {movie} = req.body;
         const director = await Director.findById(movie.director);
-        Movie.findOne({
+        Movie.find({
             title: movie.title,
             director: movie.director
         })
@@ -71,7 +71,6 @@ const createMovie = async (req, res) => {
             movie.director = director;
             //ceates a new movie model
             const newMovie = new Movie(movie);
-            newMovie.save();
             //push the movie id to the directer.books array
             director.movie.push(newMovie._id);
             //saves the movie and director data

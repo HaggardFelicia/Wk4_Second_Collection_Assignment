@@ -34,7 +34,7 @@ const getAllDirectors = async (req, res) => {
         query.skip(skip).limit(limit);
        }
 
-       const directors = await query;
+       const directors = await query.populate('movie');
        //response status and message
        res.status(200).json({ 
            data: directors,
@@ -59,20 +59,7 @@ const getDirectorById = async (req, res) => {
     //try code block to get a director by id with a success message
     try{
         const {id} = req.params;
-        Directors.findById(id)
-        .select('name _id')
-        .populate('movie', 'title year')
-        .exec()
-        .then(director => {
-            if(!director){
-                console.log(director);
-                return res.status(404).json({
-                    message: message.director_not_found,
-                    success: false
-                });
-            }   
-        })
-        const director = await Directors.findById(id);
+        const director = await Directors.findById(id).populate('movie');
         res.status(200).json({ 
             data: director,
             message: message.director_endpoint,
