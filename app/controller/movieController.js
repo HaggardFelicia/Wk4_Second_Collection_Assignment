@@ -1,12 +1,11 @@
 const Movie = require('../models/Movies');
 const Director = require('../models/Directors');
 const message = require('../messages/messages');
-const { default: mongoose } = require('mongoose');
 
 const getAllMovies = async (req, res) => {
     //try code block to get all movies with a success message
     try{
-        const movies = await Movie.find({});
+        const movies = await Movie.find({}).populate('director');
         res.status(200).json({ 
             data: movies,
             message: message.movie_endpoint, 
@@ -30,7 +29,7 @@ const getMovieById = async (req, res) => {
     const {id} = req.params;
     //try code block to get a movie by id with a success message
     try{
-        const movie = await Movie.findById(id);
+        const movie = await Movie.findById(id).populate('director');
         res.status(200).json({ 
             data: movie,
             message: message.movie_endpoint, 
